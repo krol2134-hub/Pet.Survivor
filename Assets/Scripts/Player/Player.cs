@@ -17,6 +17,8 @@ namespace Player
         private PlayerMovement _playerMovement;
 
         private SpellController _spellController;
+        
+        public event Action Dead;
 
         public Vector3 Position => transform.position;
         public float RadiusForAttack => radiusForAttack;
@@ -28,9 +30,14 @@ namespace Player
 
             _spellController = new SpellController(spells, _playerInputController, transform);
         }
-        
+
+        private void OnEnable() => healthSystem.Dead += HealthSystemDeadHandler;
+        private void OnDisable() => healthSystem.Dead -= HealthSystemDeadHandler;
+
         private void Update() => _playerMovement.Tick();
         
+        private void HealthSystemDeadHandler() => Dead?.Invoke();
+
         public void ApplyDamage(float damage) => healthSystem.ApplyDamage(damage);
     }
 }

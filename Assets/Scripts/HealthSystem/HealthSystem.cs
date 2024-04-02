@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace HealthSystem
 {
@@ -8,6 +9,9 @@ namespace HealthSystem
         [SerializeField, Range(0f, 1f)] private float armor = 0.5f;
 
         private float _health;
+        private bool _isDead;
+
+        public event Action Dead;
         
         private float Health
         {
@@ -17,6 +21,18 @@ namespace HealthSystem
         
         private void Awake() => Health = maxHealth;
 
-        public void ApplyDamage(float damage) => Health -= damage * armor;
+        public void ApplyDamage(float damage)
+        {
+            if (_isDead)
+                return;
+            
+            Health -= damage * armor;
+
+            if (Health <= 0)
+            {
+                _isDead = true;
+                Dead?.Invoke();
+            }
+        }
     }
 }
