@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ecb07efebe4b1bbe46ec146970b539, type: 3}
   m_Name: FireExplosion Spell
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 100
+  radius: 5
+  effectPrefab: {fileID: 4792985906015153069, guid: b117f4688aeb2684c8fd17d0cbc9208a, type: 3}
+  damageableLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

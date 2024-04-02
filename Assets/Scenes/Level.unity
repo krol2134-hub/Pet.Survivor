@@ -1248,18 +1248,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3359454441686936368, guid: 91944d99c59184743b8a43d6387228c2, type: 3}
-      propertyPath: armor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3359454441686936368, guid: 91944d99c59184743b8a43d6387228c2, type: 3}
-      propertyPath: maxHealth
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036772158104179006, guid: 91944d99c59184743b8a43d6387228c2, type: 3}
-      propertyPath: radiusForAttack
-      value: 1.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

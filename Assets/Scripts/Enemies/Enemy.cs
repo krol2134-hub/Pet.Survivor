@@ -4,17 +4,31 @@ using UnityEngine.AI;
 
 namespace Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private EnemyType type;
         [SerializeField] private float damage = 5f;
         [SerializeField] private NavMeshAgent agent;
+        [SerializeField] private HealthSystem.HealthSystem healthSystem;
 
+        public event Action Dead;
+        
         public EnemyType Type => type;
 
         private IAttackEnemyTarget _target;
+        
 
         public void Initialize(IAttackEnemyTarget target) => _target = target;
+
+        private void OnEnable() => healthSystem.Dead += HealthSystemDeadHandler;
+
+        private void OnDisable() => healthSystem.Dead -= HealthSystemDeadHandler;
+
+        private void HealthSystemDeadHandler()
+        {
+            Dead?.Invoke();
+            Destroy(gameObject);
+        }
 
         private void Update()
         {
@@ -24,6 +38,8 @@ namespace Enemies
             MoveToTarget();
             TryApplyDamageToTarget();
         }
+
+        public void ApplyDamage(float applyDamage) => healthSystem.ApplyDamage(applyDamage);
 
         private void MoveToTarget() => agent.SetDestination(_target.Position);
 

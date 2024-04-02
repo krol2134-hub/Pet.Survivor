@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7241513862536402109}
   - component: {fileID: 2639675564361508168}
+  - component: {fileID: 5156161603047592731}
   - component: {fileID: 8058902532362742595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Base Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +49,21 @@ MonoBehaviour:
   type: 0
   damage: 5
   agent: {fileID: 8058902532362742595}
+  healthSystem: {fileID: 5156161603047592731}
+--- !u!114 &5156161603047592731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941598970185338050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca200cc853e402799b3fcdbc5d1c349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  armor: 1
 --- !u!195 &8058902532362742595
 NavMeshAgent:
   m_ObjectHideFlags: 0
