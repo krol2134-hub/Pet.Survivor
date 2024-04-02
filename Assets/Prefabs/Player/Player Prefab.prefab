@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 3371758092238978113}
   speed: 2
+  spellController: {fileID: 6056237898554789978}
 --- !u!114 &6056237898554789978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f7fa782c894ad3bc762c8ddfed9af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells: []
+  spells:
+  - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
 --- !u!143 &3371758092238978113
 CharacterController:
   m_ObjectHideFlags: 0

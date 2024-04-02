@@ -1,16 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using Player;
+using UnityEngine;
 
 namespace SpellSystem
 {
-    public class SpellController : MonoBehaviour
+    public class SpellController : IDisposable
     {
-        [SerializeField] private SpellBase[] spells;
-
+        private readonly SpellBase[] _spells;
+        private readonly PlayerInputController _inputController;
+        
+        private readonly Transform _castTransform;
+        
         private int _currentSpellIndex;
         
-        public void Cast(Transform castTransform)
+        public SpellController(SpellBase[] spells, PlayerInputController inputController, Transform castTransform)
         {
-            spells[_currentSpellIndex].Cast(transform);
+            _spells = spells;
+            _inputController = inputController;
+
+            _castTransform = castTransform;
+            
+            _inputController.SpellCastPressed += Cast;
         }
+
+        public void Dispose () => _inputController.SpellCastPressed -= Cast;
+
+        private void Cast() => _spells[_currentSpellIndex].Cast(_castTransform);
     }
 }
