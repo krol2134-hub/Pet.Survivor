@@ -1,9 +1,10 @@
-﻿using SpellSystem;
+﻿using Enemies;
+using SpellSystem;
 using UnityEngine;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IAttackEnemyTarget
     {
         [SerializeField] private CharacterController characterController;
         [SerializeField] private SpellBase[] spells;
@@ -13,6 +14,8 @@ namespace Player
         private PlayerMovement _playerMovement;
 
         private SpellController _spellController;
+
+        public Vector3 Position => transform.position;
 
         private void Awake()
         {
