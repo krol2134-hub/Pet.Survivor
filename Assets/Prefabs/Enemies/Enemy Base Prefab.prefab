@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  armor: 1
+  armor: 0.3
 --- !u!195 &8058902532362742595
 NavMeshAgent:
   m_ObjectHideFlags: 0

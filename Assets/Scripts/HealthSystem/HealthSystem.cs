@@ -25,8 +25,9 @@ namespace HealthSystem
         {
             if (_isDead)
                 return;
-            
-            Health -= damage * armor;
+
+            var finalDamage = damage - (damage * armor);
+            Health -= finalDamage;
 
             if (Health <= 0)
             {

@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  armor: 1
+  armor: 0.2
 --- !u!143 &3371758092238978113
 CharacterController:
   m_ObjectHideFlags: 0

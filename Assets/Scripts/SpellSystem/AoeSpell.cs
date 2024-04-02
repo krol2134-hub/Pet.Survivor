@@ -1,6 +1,5 @@
 ﻿using Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SpellSystem
 {
