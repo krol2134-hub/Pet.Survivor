@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Enemies
@@ -6,20 +7,48 @@ namespace Enemies
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private EnemyType type;
+        [SerializeField] private float damage = 5f;
         [SerializeField] private NavMeshAgent agent;
 
         public EnemyType Type => type;
 
         private IAttackEnemyTarget _target;
-        
+
         public void Initialize(IAttackEnemyTarget target) => _target = target;
 
-        private void Update() => TryMoveToTarget();
+        private void Update()
+        {
+            if (_target == null)
+                return;
+            
+            MoveToTarget();
+            TryApplyDamageToTarget();
+        }
 
-        private void TryMoveToTarget()
+        private void MoveToTarget() => agent.SetDestination(_target.Position);
+
+        private void TryApplyDamageToTarget()
+        {
+            var targetPosition = _target.Position;
+            var currentPosition = transform.position;
+            targetPosition.y = 0;
+            currentPosition.y = 0;
+            
+            var distanceToTarget = Vector3.Distance(targetPosition, currentPosition);
+            var enoughDistanceForAttack = distanceToTarget <= _target.RadiusForAttack;
+            if (enoughDistanceForAttack)
+            {
+                _target.ApplyDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
         {
             if (_target != null)
-                agent.SetDestination(_target.Position);
+                Gizmos.DrawWireSphere(transform.position, _target.RadiusForAttack);
         }
+#endif
     }
 }

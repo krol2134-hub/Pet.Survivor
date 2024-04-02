@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8036772158104179006}
   - component: {fileID: 3371758092238978113}
   - component: {fileID: 3813778514312816460}
+  - component: {fileID: 3359454441686936368}
   m_Layer: 0
   m_Name: Player Prefab
   m_TagString: Untagged
@@ -48,10 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 3371758092238978113}
+  healthSystem: {fileID: 3359454441686936368}
   spells:
   - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
   - {fileID: 11400000, guid: f31e3d2cf41100341aa30b7b20d359b5, type: 2}
   speed: 2
+  radiusForAttack: 1
 --- !u!143 &3371758092238978113
 CharacterController:
   m_ObjectHideFlags: 0
@@ -101,6 +104,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3359454441686936368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857999831002255539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca200cc853e402799b3fcdbc5d1c349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  armor: 0.609
 --- !u!1001 &2584300528936434536
 PrefabInstance:
   m_ObjectHideFlags: 0
