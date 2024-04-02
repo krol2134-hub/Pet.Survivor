@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1973560430173343519}
   - component: {fileID: 8036772158104179006}
+  - component: {fileID: 6056237898554789978}
   - component: {fileID: 3371758092238978113}
   - component: {fileID: 3813778514312816460}
   m_Layer: 0
@@ -49,6 +50,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 3371758092238978113}
   speed: 2
+--- !u!114 &6056237898554789978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857999831002255539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f7fa782c894ad3bc762c8ddfed9af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells: []
 --- !u!143 &3371758092238978113
 CharacterController:
   m_ObjectHideFlags: 0
