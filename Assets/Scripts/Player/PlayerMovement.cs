@@ -24,7 +24,8 @@ namespace Player
             var movement = new Vector3(inputMovement.x, 0, inputMovement.y);
             var motion = movement * Time.deltaTime * _speed;
             
-            _characterController.transform.rotation = Quaternion.LookRotation(movement);
+            _characterController.transform.rotation = movement == Vector3.zero ?
+                Quaternion.identity : Quaternion.LookRotation(movement);;
             _characterController.Move(motion);
         }
     }
