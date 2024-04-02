@@ -31,8 +31,19 @@ namespace Player
             _spellController = new SpellController(spells, _playerInputController, transform);
         }
 
-        private void OnEnable() => healthSystem.Dead += HealthSystemDeadHandler;
-        private void OnDisable() => healthSystem.Dead -= HealthSystemDeadHandler;
+        private void OnEnable()
+        {
+            healthSystem.Dead += HealthSystemDeadHandler;
+            _playerInputController.Enable();
+            _spellController.Enable();
+        }
+
+        private void OnDisable()
+        {
+            healthSystem.Dead -= HealthSystemDeadHandler;
+            _playerInputController.Disable();
+            _spellController.Disable();
+        }
 
         private void Update() => _playerMovement.Tick();
         

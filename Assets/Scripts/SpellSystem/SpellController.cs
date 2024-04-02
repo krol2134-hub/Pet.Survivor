@@ -1,10 +1,9 @@
-﻿using System;
-using Player;
+﻿using Player;
 using UnityEngine;
 
 namespace SpellSystem
 {
-    public class SpellController : IDisposable
+    public class SpellController
     {
         private readonly SpellBase[] _spells;
         private readonly PlayerInputController _inputController;
@@ -19,13 +18,16 @@ namespace SpellSystem
             _inputController = inputController;
 
             _castTransform = castTransform;
-            
+        }
+
+        public void Enable()
+        {
             _inputController.SpellCastPressed += Cast;
             _inputController.SpellPreviousPressed += SelectPreviousSpell;
             _inputController.SpellNextPressed += SelectNextSpell;
         }
-
-        public void Dispose ()
+        
+        public void Disable()
         {
             _inputController.SpellCastPressed -= Cast;
             _inputController.SpellPreviousPressed -= SelectPreviousSpell;

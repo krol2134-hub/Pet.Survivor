@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class PlayerInputController : IDisposable
+    public class PlayerInputController
     {
         private readonly InputControls _inputControls;
 
@@ -18,7 +18,10 @@ namespace Player
         {
             _inputControls = new InputControls();
             _inputControls.Enable();
-            
+        }
+
+        public void Enable()
+        {
             _inputControls.Gameplay.Movement.performed += MovementHandler;
             _inputControls.Gameplay.Movement.canceled += MovementHandler;
             
@@ -27,7 +30,7 @@ namespace Player
             _inputControls.Gameplay.SpellNext.performed += SpellNextHandler;
         }
 
-        public void Dispose()
+        public void Disable()
         {
             _inputControls.Gameplay.Movement.performed -= MovementHandler;
             _inputControls.Gameplay.Movement.canceled -= MovementHandler;
