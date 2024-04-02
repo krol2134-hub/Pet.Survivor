@@ -8,11 +8,18 @@ namespace Enemies
     {
         [SerializeField] private int maxEnemyCount = 10;
         [SerializeField] private Transform[] spawnPoints;
-        [SerializeField] private Player.Player player;
+        
+        
+        private Player.Player _player;
+        private EnemyFactory _enemyFactory;
 
-        [SerializeField] private EnemyFactory factory;
-
-        private void Start() => SpawnEnemies(maxEnemyCount);
+        public void Initialize(Player.Player player, EnemyFactory enemyFactory)
+        {
+            _player = player;
+            _enemyFactory = enemyFactory;
+            
+            SpawnEnemies(maxEnemyCount);
+        }
 
         private void SpawnEnemies(int spawnCount)
         {
@@ -21,8 +28,8 @@ namespace Enemies
                 var enemyType = GetRandomEnemyType();
                 var position = GetRandomSpawnPosition();
 
-                var enemy = factory.CreateEnemy(enemyType, position);
-                enemy.Initialize(player);
+                var enemy = _enemyFactory.CreateEnemy(enemyType, position);
+                enemy.Initialize(_player);
             }
         }
 

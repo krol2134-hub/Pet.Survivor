@@ -12,13 +12,14 @@ namespace Enemies
 
         private IAttackEnemyTarget _target;
         
-        public void Initialize(IAttackEnemyTarget target)
+        public void Initialize(IAttackEnemyTarget target) => _target = target;
+
+        private void Update() => TryMoveToTarget();
+
+        private void TryMoveToTarget()
         {
-            _target = target;
-
-            MoveToTarget();
+            if (_target != null)
+                agent.SetDestination(_target.Position);
         }
-
-        private void MoveToTarget() => agent.SetDestination(_target.Position);
     }
 }
