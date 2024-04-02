@@ -24,11 +24,7 @@ namespace Enemies
 
         private void OnDisable() => healthSystem.Dead -= HealthSystemDeadHandler;
 
-        private void HealthSystemDeadHandler()
-        {
-            Dead?.Invoke(this);
-            Destroy(gameObject);
-        }
+        private void HealthSystemDeadHandler() => Die();
 
         private void Update()
         {
@@ -40,6 +36,12 @@ namespace Enemies
         }
 
         public void ApplyDamage(float applyDamage) => healthSystem.ApplyDamage(applyDamage);
+
+        private void Die()
+        {
+            Dead?.Invoke(this);
+            Destroy(gameObject);
+        }
 
         private void MoveToTarget() => agent.SetDestination(_target.Position);
 
@@ -55,7 +57,7 @@ namespace Enemies
             if (enoughDistanceForAttack)
             {
                 _target.ApplyDamage(damage);
-                Destroy(gameObject);
+                Die();
             }
         }
 
