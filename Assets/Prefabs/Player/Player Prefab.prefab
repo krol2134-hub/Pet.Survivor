@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3359454441686936368}
   - component: {fileID: 3371758092238978113}
   - component: {fileID: 3813778514312816460}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,8 +51,8 @@ MonoBehaviour:
   characterController: {fileID: 3371758092238978113}
   healthSystem: {fileID: 3359454441686936368}
   spells:
-  - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
   - {fileID: 11400000, guid: f31e3d2cf41100341aa30b7b20d359b5, type: 2}
+  - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
   speed: 2
   radiusForAttack: 1.2
 --- !u!114 &3359454441686936368
