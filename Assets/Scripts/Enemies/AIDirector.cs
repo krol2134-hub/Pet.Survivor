@@ -8,7 +8,8 @@ namespace Enemies
     {
         [SerializeField] private int maxEnemyCount = 10;
         [SerializeField] private Transform[] spawnPoints;
-        
+
+        private int _currentZombiesCount;
         
         private Player.Player _player;
         private EnemyFactory _enemyFactory;
@@ -30,7 +31,26 @@ namespace Enemies
 
                 var enemy = _enemyFactory.CreateEnemy(enemyType, position);
                 enemy.Initialize(_player);
+                
+                enemy.Dead += EnemyDeadHandler;
+
+                _currentZombiesCount++;
             }
+        }
+
+        private void EnemyDeadHandler(Enemy enemy)
+        {
+            _currentZombiesCount--;
+            enemy.Dead -= EnemyDeadHandler;
+
+            TrySpawnZombies();
+        }
+
+        private void TrySpawnZombies()
+        {
+            var needToSpawnCount = maxEnemyCount - _currentZombiesCount;
+            if (needToSpawnCount > 0)
+                SpawnEnemies(needToSpawnCount);
         }
 
         private EnemyType GetRandomEnemyType()

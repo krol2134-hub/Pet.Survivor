@@ -11,7 +11,7 @@ namespace Enemies
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
 
-        public event Action Dead;
+        public event Action<Enemy> Dead;
         
         public EnemyType Type => type;
 
@@ -26,7 +26,7 @@ namespace Enemies
 
         private void HealthSystemDeadHandler()
         {
-            Dead?.Invoke();
+            Dead?.Invoke(this);
             Destroy(gameObject);
         }
 
