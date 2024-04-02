@@ -9,6 +9,8 @@ namespace Player
         private readonly InputControls _inputControls;
 
         public event Action SpellCastPressed;
+        public event Action SpellPreviousPressed;
+        public event Action SpellNextPressed;
         
         public Vector2 Movement { get; private set; }
         
@@ -21,6 +23,8 @@ namespace Player
             _inputControls.Gameplay.Movement.canceled += MovementHandler;
             
             _inputControls.Gameplay.SpellCast.performed += SpellUseHandler;
+            _inputControls.Gameplay.SpellPrevious.performed += SpellPreviousHandler;
+            _inputControls.Gameplay.SpellNext.performed += SpellNextHandler;
         }
 
         public void Dispose()
@@ -29,9 +33,13 @@ namespace Player
             _inputControls.Gameplay.Movement.canceled -= MovementHandler;
             
             _inputControls.Gameplay.SpellCast.performed -= SpellUseHandler;
+            _inputControls.Gameplay.SpellPrevious.performed -= SpellPreviousHandler;
+            _inputControls.Gameplay.SpellNext.performed -= SpellNextHandler;
         }
 
         private void SpellUseHandler(InputAction.CallbackContext context) => SpellCastPressed?.Invoke();
+        private void SpellPreviousHandler(InputAction.CallbackContext context) => SpellPreviousPressed?.Invoke();
+        private void SpellNextHandler(InputAction.CallbackContext context) => SpellNextPressed?.Invoke();
 
         private void MovementHandler(InputAction.CallbackContext context)
         {

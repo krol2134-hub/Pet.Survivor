@@ -21,10 +21,37 @@ namespace SpellSystem
             _castTransform = castTransform;
             
             _inputController.SpellCastPressed += Cast;
+            _inputController.SpellPreviousPressed += SelectPreviousSpell;
+            _inputController.SpellNextPressed += SelectNextSpell;
         }
 
-        public void Dispose () => _inputController.SpellCastPressed -= Cast;
+        public void Dispose ()
+        {
+            _inputController.SpellCastPressed -= Cast;
+            _inputController.SpellPreviousPressed -= SelectPreviousSpell;
+            _inputController.SpellNextPressed -= SelectNextSpell;
+        }
 
-        private void Cast() => _spells[_currentSpellIndex].Cast(_castTransform);
+        private void Cast()
+        {
+            var currentSpell = _spells[_currentSpellIndex];
+            currentSpell.Cast(_castTransform);
+        }
+
+        private void SelectPreviousSpell()
+        {
+            if (_currentSpellIndex == 0)
+                return;
+
+            _currentSpellIndex--;
+        }
+
+        private void SelectNextSpell()
+        {
+            if (_currentSpellIndex == _spells.Length - 1)
+                return;
+
+            _currentSpellIndex++;
+        }
     }
 }

@@ -44,6 +44,24 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpellPrevious"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3210751-e8a7-4597-8a75-f692914ea142"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpellNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""97297b83-f087-439a-81f5-2e7f03e0483b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c3df57b-6c5b-4823-bbce-144bfde589e5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellPrevious"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b077b081-adb0-4456-b0bf-f9bfd5cf9cfb"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellNext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_SpellCast = m_Gameplay.FindAction("SpellCast", throwIfNotFound: true);
+        m_Gameplay_SpellPrevious = m_Gameplay.FindAction("SpellPrevious", throwIfNotFound: true);
+        m_Gameplay_SpellNext = m_Gameplay.FindAction("SpellNext", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +227,16 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_SpellCast;
+    private readonly InputAction m_Gameplay_SpellPrevious;
+    private readonly InputAction m_Gameplay_SpellNext;
     public struct GameplayActions
     {
         private @InputControls m_Wrapper;
         public GameplayActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @SpellCast => m_Wrapper.m_Gameplay_SpellCast;
+        public InputAction @SpellPrevious => m_Wrapper.m_Gameplay_SpellPrevious;
+        public InputAction @SpellNext => m_Wrapper.m_Gameplay_SpellNext;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +252,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @SpellCast.started += instance.OnSpellCast;
             @SpellCast.performed += instance.OnSpellCast;
             @SpellCast.canceled += instance.OnSpellCast;
+            @SpellPrevious.started += instance.OnSpellPrevious;
+            @SpellPrevious.performed += instance.OnSpellPrevious;
+            @SpellPrevious.canceled += instance.OnSpellPrevious;
+            @SpellNext.started += instance.OnSpellNext;
+            @SpellNext.performed += instance.OnSpellNext;
+            @SpellNext.canceled += instance.OnSpellNext;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -216,6 +268,12 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @SpellCast.started -= instance.OnSpellCast;
             @SpellCast.performed -= instance.OnSpellCast;
             @SpellCast.canceled -= instance.OnSpellCast;
+            @SpellPrevious.started -= instance.OnSpellPrevious;
+            @SpellPrevious.performed -= instance.OnSpellPrevious;
+            @SpellPrevious.canceled -= instance.OnSpellPrevious;
+            @SpellNext.started -= instance.OnSpellNext;
+            @SpellNext.performed -= instance.OnSpellNext;
+            @SpellNext.canceled -= instance.OnSpellNext;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -237,5 +295,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSpellCast(InputAction.CallbackContext context);
+        void OnSpellPrevious(InputAction.CallbackContext context);
+        void OnSpellNext(InputAction.CallbackContext context);
     }
 }
