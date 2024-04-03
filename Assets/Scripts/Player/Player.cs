@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Player
 {
+    [SelectionBase]
     public class Player : MonoBehaviour, IAttackEnemyTarget
     {
         [SerializeField] private CharacterController characterController;
