@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace AI
-{   
+{
     public class AIDirector : MonoBehaviour
     {
         [SerializeField] private int maxEnemyCount = 10;
@@ -12,13 +12,11 @@ namespace AI
 
         private int _currentZombiesCount;
         
-        private IAttackEnemyTarget _attackTarget;
-        private EnemyFactory _enemyFactory;
+        private EnemyPool _enemyPool;
 
-        public void Initialize(IAttackEnemyTarget attackTarget, EnemyFactory enemyFactory)
+        public void Initialize(EnemyPool enemyPool)
         {
-            _attackTarget = attackTarget;
-            _enemyFactory = enemyFactory;
+            _enemyPool = enemyPool;
             
             SpawnEnemies(maxEnemyCount);
         }
@@ -28,9 +26,9 @@ namespace AI
             for (var i = 0; i < spawnCount - 1; i++)
             {
                 var enemyType = GetRandomEnemyType();
-                var position = GetRandomSpawnPosition();
+                var spawnPoint = GetRandomSpawnPoint();
 
-                var enemy = _enemyFactory.CreateEnemy(enemyType, position, _attackTarget);
+                var enemy = _enemyPool.Get(enemyType, spawnPoint.position, spawnPoint.rotation);
                 
                 enemy.Dead += EnemyDeadHandler;
 
@@ -62,11 +60,11 @@ namespace AI
             return randomEnemyType;
         }
         
-        private Vector3 GetRandomSpawnPosition()
+        private Transform GetRandomSpawnPoint()
         {
             //TODO Extension to random pick
             var randomIndex = Random.Range(0, spawnPoints.Length);
-            return spawnPoints[randomIndex].position;
+            return spawnPoints[randomIndex];
         }
     }
 }

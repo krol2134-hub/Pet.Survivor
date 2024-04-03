@@ -35,6 +35,8 @@ namespace AI.Enemies
             MoveToTarget();
             TryApplyDamageToTargetByDistance();
         }
+        
+        public void ResetData() => healthSystem.ResetData();
 
         public void ApplyDamage(float applyDamage) => healthSystem.ApplyDamage(applyDamage);
         
@@ -42,11 +44,7 @@ namespace AI.Enemies
 
         private void MoveToTarget() => agent.SetDestination(_target.Position);
         
-        private void Die()
-        {
-            Dead?.Invoke(this);
-            Destroy(gameObject);
-        }
+        private void Die() => Dead?.Invoke(this);
 
         private void TryApplyDamageToTargetByDistance()
         {

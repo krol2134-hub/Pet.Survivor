@@ -29,7 +29,13 @@ namespace HealthSystem
 
         public float MaxHealth => settings.MaxHealth;
 
-        private void Awake() => Health = settings.MaxHealth;
+        private void Awake() => SetMaxHealth();
+
+        public void ResetData()
+        {
+            SetMaxHealth();
+            _isDead = false;
+        }
 
         public void ApplyDamage(float damage)
         {
@@ -45,5 +51,7 @@ namespace HealthSystem
                 Dead?.Invoke();
             }
         }
+
+        private void SetMaxHealth() => Health = settings.MaxHealth;
     }
 }
