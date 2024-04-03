@@ -42,7 +42,7 @@ namespace HealthSystem
             if (_isDead)
                 return;
 
-            var finalDamage = damage - (damage * settings.Armor);
+            var finalDamage = damage * (1 - settings.Armor);
             Health -= finalDamage;
 
             if (Health <= 0)
