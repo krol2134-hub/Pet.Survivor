@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Ultra Projectile Spell
   m_EditorClassIdentifier: 
   damage: 200
-  cooldown: 3
+  cooldown: 2
   displayName: Fireball Ultra
   icon: {fileID: 21300000, guid: 6babb9d2f2af17e4c9aba056c436d108, type: 3}
   projectilePrefab: {fileID: 3981992379554804568, guid: 7257925f7b78c47428b646569894c934, type: 3}
