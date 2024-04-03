@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Core
 {
-    //TODO Now is GOD class, need reworking with separating logic
+    //TODO Now is GOD class, need to rework with separated logic
     public class LoseController : MonoBehaviour
     {
         [SerializeField] private Canvas loseCanvas;

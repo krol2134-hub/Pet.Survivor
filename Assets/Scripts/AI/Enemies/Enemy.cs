@@ -10,13 +10,13 @@ namespace AI.Enemies
         [SerializeField] private EnemySettings settings;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
-
-        public event Action<Enemy> Dead;
+        
+        private IAttackEnemyTarget _target;
         
         public EnemyType Type => settings.Type;
 
-        private IAttackEnemyTarget _target;
-        
+        public event Action<Enemy> Dead;
+
         public void Initialize(IAttackEnemyTarget target)
         {
             _target = target;
@@ -27,28 +27,28 @@ namespace AI.Enemies
 
         private void OnDisable() => healthSystem.Dead -= HealthSystemDeadHandler;
 
-        private void HealthSystemDeadHandler() => Die();
-
         private void Update()
         {
             if (_target == null)
                 return;
             
             MoveToTarget();
-            TryApplyDamageToTarget();
+            TryApplyDamageToTargetByDistance();
         }
 
         public void ApplyDamage(float applyDamage) => healthSystem.ApplyDamage(applyDamage);
+        
+        private void HealthSystemDeadHandler() => Die();
 
+        private void MoveToTarget() => agent.SetDestination(_target.Position);
+        
         private void Die()
         {
             Dead?.Invoke(this);
             Destroy(gameObject);
         }
 
-        private void MoveToTarget() => agent.SetDestination(_target.Position);
-
-        private void TryApplyDamageToTarget()
+        private void TryApplyDamageToTargetByDistance()
         {
             var targetPosition = _target.Position;
             var currentPosition = transform.position;
@@ -70,6 +70,9 @@ namespace AI.Enemies
             if (_target != null)
                 Gizmos.DrawWireSphere(transform.position, settings.RadiusForDamageTarget);
         }
+
+        [ContextMenu("Die")]
+        private void DieContextMenu() => Die();
 #endif
     }
 }

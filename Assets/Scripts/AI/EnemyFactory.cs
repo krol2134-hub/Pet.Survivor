@@ -7,7 +7,7 @@ namespace AI
     {
         [SerializeField] private Enemy[] prefabs;
         
-        public Enemy CreateEnemy(EnemyType type, Vector3 position)
+        public Enemy CreateEnemy(EnemyType type, Vector3 position, IAttackEnemyTarget attackTarget)
         {
             foreach (var prefab in prefabs)
             {
@@ -16,6 +16,7 @@ namespace AI
                     continue;
                 
                 var enemy = Instantiate(prefab, position, Quaternion.identity);
+                enemy.Initialize(attackTarget);
                 return enemy;
             }
 
