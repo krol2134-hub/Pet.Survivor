@@ -13,16 +13,10 @@ namespace UI
             slider.maxValue = healthSystem.MaxHealth;
             slider.value = healthSystem.MaxHealth;
         }
-        
-        private void OnEnable()
-        {
-            healthSystem.HealthChanged += HealthChangedHandler;
-        }
 
-        private void OnDisable()
-        {
-            healthSystem.HealthChanged -= HealthChangedHandler;
-        }
+        private void OnEnable() => healthSystem.HealthChanged += HealthChangedHandler;
+
+        private void OnDisable() => healthSystem.HealthChanged -= HealthChangedHandler;
 
         private void HealthChangedHandler(float currentHealth) => slider.value = currentHealth;
     }

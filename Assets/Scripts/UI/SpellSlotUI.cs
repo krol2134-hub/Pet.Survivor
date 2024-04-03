@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    //TODO Update select key hint depend on input controll
+    //TODO Update select key hint depend on input controls
     public class SpellSlotUI : MonoBehaviour
     {
         [SerializeField] private Image iconImage;

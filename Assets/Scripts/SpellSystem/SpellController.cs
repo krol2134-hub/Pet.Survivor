@@ -72,7 +72,8 @@ namespace SpellSystem
 
         private void SelectPreviousSpell()
         {
-            if (CurrentSpellIndex == 0)
+            var isFirstSpell = CurrentSpellIndex == 0;
+            if (isFirstSpell)
                 return;
 
             CurrentSpellIndex--;
@@ -80,7 +81,8 @@ namespace SpellSystem
 
         private void SelectNextSpell()
         {
-            if (CurrentSpellIndex == _spells.Length - 1)
+            var isLastSpell = CurrentSpellIndex == _spells.Length - 1;
+            if (isLastSpell)
                 return;
 
             CurrentSpellIndex++;
@@ -89,7 +91,6 @@ namespace SpellSystem
         private void UpdateCurrentSpellSlot()
         {
             var currentSpell = _spells[CurrentSpellIndex];
-
             _spellSlotUI.UpdateSlotInfo(currentSpell.Icon, currentSpell.Name);
         }
     }
