@@ -12,13 +12,24 @@ namespace HealthSystem
         private bool _isDead;
 
         public event Action Dead;
+        public event Action<float> HealthChanged;
         
         private float Health
         {
             get => _health;
-            set => _health = Mathf.Clamp(value, 0f, maxHealth);
+            set
+            {
+                var previousHealth = _health;
+                _health = Mathf.Clamp(value, 0f, maxHealth);
+
+                var isChanged = !Mathf.Approximately(_health, previousHealth);
+                if (isChanged)
+                    HealthChanged?.Invoke(_health);
+            }
         }
-        
+
+        public float MaxHealth => maxHealth;
+
         private void Awake() => Health = maxHealth;
 
         public void ApplyDamage(float damage)
