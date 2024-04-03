@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: FireExplosion Spell
   m_EditorClassIdentifier: 
   damage: 100
+  displayName: Fire Explosion
+  icon: {fileID: 21300000, guid: 171782376c08038428f3210ddf305ca9, type: 3}
   radius: 5
   effectPrefab: {fileID: 4792985906015153069, guid: b117f4688aeb2684c8fd17d0cbc9208a, type: 3}
   damageableLayerMask:

@@ -1,4 +1,5 @@
 ﻿using Player;
+using UI;
 using UnityEngine;
 
 namespace SpellSystem
@@ -7,15 +8,27 @@ namespace SpellSystem
     {
         private readonly SpellBase[] _spells;
         private readonly PlayerInputController _inputController;
+        private readonly SpellSlotUI _spellSlotUI;
         
         private readonly Transform _castTransform;
         
         private int _currentSpellIndex;
-        
-        public SpellController(SpellBase[] spells, PlayerInputController inputController, Transform castTransform)
+
+        private int CurrentSpellIndex
+        {
+            get => _currentSpellIndex;
+            set
+            {
+                _currentSpellIndex = value;
+                UpdateCurrentSpellSlot();
+            }
+        }
+
+        public SpellController(SpellBase[] spells, PlayerInputController inputController, SpellSlotUI spellSlotUI, Transform castTransform)
         {
             _spells = spells;
             _inputController = inputController;
+            _spellSlotUI = spellSlotUI;
 
             _castTransform = castTransform;
         }
@@ -36,24 +49,31 @@ namespace SpellSystem
 
         private void Cast()
         {
-            var currentSpell = _spells[_currentSpellIndex];
+            var currentSpell = _spells[CurrentSpellIndex];
             currentSpell.Cast(_castTransform);
         }
 
         private void SelectPreviousSpell()
         {
-            if (_currentSpellIndex == 0)
+            if (CurrentSpellIndex == 0)
                 return;
 
-            _currentSpellIndex--;
+            CurrentSpellIndex--;
         }
 
         private void SelectNextSpell()
         {
-            if (_currentSpellIndex == _spells.Length - 1)
+            if (CurrentSpellIndex == _spells.Length - 1)
                 return;
 
-            _currentSpellIndex++;
+            CurrentSpellIndex++;
+        }
+
+        private void UpdateCurrentSpellSlot()
+        {
+            var currentSpell = _spells[CurrentSpellIndex];
+
+            _spellSlotUI.UpdateSlotInfo(currentSpell.Icon, currentSpell.Name);
         }
     }
 }

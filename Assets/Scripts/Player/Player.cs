@@ -1,6 +1,7 @@
 ﻿using System;
 using Enemies;
 using SpellSystem;
+using UI;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,7 @@ namespace Player
         [SerializeField] private CharacterController characterController;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
         [SerializeField] private SpellBase[] spells;
+        [SerializeField] private SpellSlotUI spellSlotUI;
         [SerializeField] private float speed = 2f;
         [SerializeField] private float radiusForAttack = 0.5f;
 
@@ -28,7 +30,7 @@ namespace Player
             _playerInputController = new PlayerInputController();
             _playerMovement = new PlayerMovement(characterController, _playerInputController, speed);
 
-            _spellController = new SpellController(spells, _playerInputController, transform);
+            _spellController = new SpellController(spells, _playerInputController, spellSlotUI, transform);
         }
 
         private void OnEnable()

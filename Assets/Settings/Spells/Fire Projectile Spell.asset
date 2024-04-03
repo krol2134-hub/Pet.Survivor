@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Fire Projectile Spell
   m_EditorClassIdentifier: 
   damage: 100
+  displayName: Fireball
+  icon: {fileID: 21300000, guid: d90825a3b3c5f1d48a89cc3a7f33e012, type: 3}
   projectilePrefab: {fileID: 3981992379554804568, guid: 2771bed55955f5d4a9b713e41760846f, type: 3}
