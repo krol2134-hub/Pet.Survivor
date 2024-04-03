@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d795c2f0574715a9cafa22ee08f6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  damage: 5
+  settings: {fileID: 11400000, guid: 1be87dcd7ea0a6745a164e5ea009f6c7, type: 2}
   agent: {fileID: 8058902532362742595}
   healthSystem: {fileID: 5156161603047592731}
 --- !u!114 &5156161603047592731

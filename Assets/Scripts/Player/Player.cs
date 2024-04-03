@@ -9,7 +9,7 @@ namespace Player
     [SelectionBase]
     public class Player : MonoBehaviour, IAttackEnemyTarget
     {
-        [SerializeField] private PlayerSettings playerSettings;
+        [SerializeField] private PlayerSettings settings;
         [SerializeField] private CharacterController characterController;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
         [SerializeField] private SpellSlotUI spellSlotUI;
@@ -26,9 +26,9 @@ namespace Player
         private void Awake()
         {
             _playerInputController = new PlayerInputController();
-            _playerMovement = new PlayerMovement(characterController, _playerInputController, playerSettings.Speed);
+            _playerMovement = new PlayerMovement(characterController, _playerInputController, settings.Speed);
 
-            _spellController = new SpellController(playerSettings.Spells, _playerInputController, spellSlotUI, this);
+            _spellController = new SpellController(settings.Spells, _playerInputController, spellSlotUI, this);
         }
 
         private void OnEnable()

@@ -7,20 +7,21 @@ namespace AI.Enemies
 {
     public class Enemy : MonoBehaviour, IDamageable
     {
-        [SerializeField] private EnemyType type;
-        [SerializeField] private float damage = 5f;
-        [SerializeField] private float radiusForDamageTarget = 1.2f;
+        [SerializeField] private EnemySettings settings;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
 
         public event Action<Enemy> Dead;
         
-        public EnemyType Type => type;
+        public EnemyType Type => settings.Type;
 
         private IAttackEnemyTarget _target;
         
-
-        public void Initialize(IAttackEnemyTarget target) => _target = target;
+        public void Initialize(IAttackEnemyTarget target)
+        {
+            _target = target;
+            agent.speed = settings.Speed;
+        }
 
         private void OnEnable() => healthSystem.Dead += HealthSystemDeadHandler;
 
@@ -55,10 +56,10 @@ namespace AI.Enemies
             currentPosition.y = 0;
             
             var distanceToTarget = Vector3.Distance(targetPosition, currentPosition);
-            var enoughDistanceForAttack = distanceToTarget <= radiusForDamageTarget;
+            var enoughDistanceForAttack = distanceToTarget <= settings.RadiusForDamageTarget;
             if (enoughDistanceForAttack)
             {
-                _target.ApplyDamage(damage);
+                _target.ApplyDamage(settings.Damage);
                 Die();
             }
         }
@@ -67,7 +68,7 @@ namespace AI.Enemies
         private void OnDrawGizmos()
         {
             if (_target != null)
-                Gizmos.DrawWireSphere(transform.position, radiusForDamageTarget);
+                Gizmos.DrawWireSphere(transform.position, settings.RadiusForDamageTarget);
         }
 #endif
     }

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331f44e42ffa4c72a524a4bac24a15e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSettings: {fileID: 11400000, guid: 5f669cbff1aa319468a6af417cd6375b, type: 2}
+  settings: {fileID: 11400000, guid: 5f669cbff1aa319468a6af417cd6375b, type: 2}
   characterController: {fileID: 3371758092238978113}
   healthSystem: {fileID: 3359454441686936368}
   spellSlotUI: {fileID: 9036065822702913659}
