@@ -30,7 +30,7 @@ namespace Player
             _playerInputController = new PlayerInputController();
             _playerMovement = new PlayerMovement(characterController, _playerInputController, speed);
 
-            _spellController = new SpellController(spells, _playerInputController, spellSlotUI, transform);
+            _spellController = new SpellController(spells, _playerInputController, spellSlotUI, this);
         }
 
         private void OnEnable()

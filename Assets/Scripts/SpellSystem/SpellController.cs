@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using System.Collections;
+using Player;
 using UI;
 using UnityEngine;
 
@@ -10,9 +11,11 @@ namespace SpellSystem
         private readonly PlayerInputController _inputController;
         private readonly SpellSlotUI _spellSlotUI;
         
-        private readonly Transform _castTransform;
+        private readonly MonoBehaviour _castBehaviour;
         
         private int _currentSpellIndex;
+
+        private bool _isCooldown;
 
         private int CurrentSpellIndex
         {
@@ -24,13 +27,13 @@ namespace SpellSystem
             }
         }
 
-        public SpellController(SpellBase[] spells, PlayerInputController inputController, SpellSlotUI spellSlotUI, Transform castTransform)
+        public SpellController(SpellBase[] spells, PlayerInputController inputController, SpellSlotUI spellSlotUI, MonoBehaviour castBehaviour)
         {
             _spells = spells;
             _inputController = inputController;
             _spellSlotUI = spellSlotUI;
 
-            _castTransform = castTransform;
+            _castBehaviour = castBehaviour;
         }
 
         public void Enable()
@@ -49,8 +52,22 @@ namespace SpellSystem
 
         private void Cast()
         {
+            if (_isCooldown)
+                return;
+            
             var currentSpell = _spells[CurrentSpellIndex];
-            currentSpell.Cast(_castTransform);
+            currentSpell.Cast(_castBehaviour.transform);
+            _castBehaviour.StartCoroutine(StartCooldown(currentSpell.Cooldown));
+
+        }
+
+        private IEnumerator StartCooldown(float cooldown)
+        {
+            _isCooldown = true;
+            
+            yield return new WaitForSeconds(cooldown);
+            
+            _isCooldown = false;
         }
 
         private void SelectPreviousSpell()
