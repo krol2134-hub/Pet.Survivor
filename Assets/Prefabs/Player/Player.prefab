@@ -51,14 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331f44e42ffa4c72a524a4bac24a15e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSettings: {fileID: 11400000, guid: 5f669cbff1aa319468a6af417cd6375b, type: 2}
   characterController: {fileID: 3371758092238978113}
   healthSystem: {fileID: 3359454441686936368}
-  spells:
-  - {fileID: 11400000, guid: f31e3d2cf41100341aa30b7b20d359b5, type: 2}
-  - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
   spellSlotUI: {fileID: 9036065822702913659}
-  speed: 3
-  radiusForAttack: 1.2
 --- !u!114 &3359454441686936368
 MonoBehaviour:
   m_ObjectHideFlags: 0

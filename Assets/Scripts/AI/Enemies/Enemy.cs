@@ -9,6 +9,7 @@ namespace AI.Enemies
     {
         [SerializeField] private EnemyType type;
         [SerializeField] private float damage = 5f;
+        [SerializeField] private float radiusForDamageTarget = 1.2f;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
 
@@ -54,7 +55,7 @@ namespace AI.Enemies
             currentPosition.y = 0;
             
             var distanceToTarget = Vector3.Distance(targetPosition, currentPosition);
-            var enoughDistanceForAttack = distanceToTarget <= _target.RadiusForAttack;
+            var enoughDistanceForAttack = distanceToTarget <= radiusForDamageTarget;
             if (enoughDistanceForAttack)
             {
                 _target.ApplyDamage(damage);
@@ -66,7 +67,7 @@ namespace AI.Enemies
         private void OnDrawGizmos()
         {
             if (_target != null)
-                Gizmos.DrawWireSphere(transform.position, _target.RadiusForAttack);
+                Gizmos.DrawWireSphere(transform.position, radiusForDamageTarget);
         }
 #endif
     }

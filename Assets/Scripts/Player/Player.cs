@@ -9,12 +9,10 @@ namespace Player
     [SelectionBase]
     public class Player : MonoBehaviour, IAttackEnemyTarget
     {
+        [SerializeField] private PlayerSettings playerSettings;
         [SerializeField] private CharacterController characterController;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
-        [SerializeField] private SpellBase[] spells;
         [SerializeField] private SpellSlotUI spellSlotUI;
-        [SerializeField] private float speed = 2f;
-        [SerializeField] private float radiusForAttack = 0.5f;
 
         private PlayerInputController _playerInputController;
         private PlayerMovement _playerMovement;
@@ -24,14 +22,13 @@ namespace Player
         public event Action Dead;
 
         public Vector3 Position => transform.position;
-        public float RadiusForAttack => radiusForAttack;
 
         private void Awake()
         {
             _playerInputController = new PlayerInputController();
-            _playerMovement = new PlayerMovement(characterController, _playerInputController, speed);
+            _playerMovement = new PlayerMovement(characterController, _playerInputController, playerSettings.Speed);
 
-            _spellController = new SpellController(spells, _playerInputController, spellSlotUI, this);
+            _spellController = new SpellController(playerSettings.Spells, _playerInputController, spellSlotUI, this);
         }
 
         private void OnEnable()
