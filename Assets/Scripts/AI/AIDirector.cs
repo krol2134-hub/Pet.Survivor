@@ -8,16 +8,17 @@ namespace AI
     public class AIDirector : MonoBehaviour
     {
         [SerializeField] private int maxEnemyCount = 10;
-        [SerializeField] private Transform[] spawnPoints;
+
+        private const float SpawnFieldOutsideOffset = 0.2f;
 
         private int _currentZombiesCount;
-        
+
         private EnemyPool _enemyPool;
 
         public void Initialize(EnemyPool enemyPool)
         {
             _enemyPool = enemyPool;
-            
+
             SpawnEnemies(maxEnemyCount);
         }
 
@@ -26,10 +27,10 @@ namespace AI
             for (var i = 0; i < spawnCount - 1; i++)
             {
                 var enemyType = GetRandomEnemyType();
-                var spawnPoint = GetRandomSpawnPoint();
+                var spawnPoint = GetRandomPoint();
 
-                var enemy = _enemyPool.Get(enemyType, spawnPoint.position, spawnPoint.rotation);
-                
+                var enemy = _enemyPool.Get(enemyType, spawnPoint);
+
                 enemy.Dead += EnemyDeadHandler;
 
                 _currentZombiesCount++;
@@ -59,12 +60,31 @@ namespace AI
             var randomEnemyType = (EnemyType)types.GetValue(randomIndex);
             return randomEnemyType;
         }
-        
-        private Transform GetRandomSpawnPoint()
+
+        private Vector3 GetRandomPoint()
         {
-            //TODO Extension to random pick
-            var randomIndex = Random.Range(0, spawnPoints.Length);
-            return spawnPoints[randomIndex];
+            var point = Vector3.zero;
+            
+            var randomAxisPosition = Random.value;
+            var randomOutsideOffset = Random.Range(-SpawnFieldOutsideOffset, SpawnFieldOutsideOffset);
+            if (randomOutsideOffset >= 0)
+                randomOutsideOffset += 1;
+
+            var isHorizontalSidePriority = Random.value > 0.5f;
+            if (isHorizontalSidePriority)
+            {
+                point.x = randomAxisPosition;
+                point.y = randomOutsideOffset;
+            }
+            else
+            {
+                point.x = randomOutsideOffset;
+                point.y = randomAxisPosition;
+            }
+
+            point = Camera.main.ViewportToWorldPoint(point);
+            point.y = 0;
+            return point;
         }
     }
 }

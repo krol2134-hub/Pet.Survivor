@@ -44,12 +44,12 @@ namespace AI
             void ActionOnDestroy(Enemy enemy) => Destroy(enemy.gameObject);
         }
 
-        public Enemy Get(EnemyType type, Vector3 position, Quaternion rotation)
+        public Enemy Get(EnemyType type, Vector3 position)
         {
             var pool = _pools[type];
             var zombie = pool.Get();
 
-            zombie.transform.SetPositionAndRotation(position, rotation);
+            zombie.transform.position = position;
             zombie.Dead += ReturnToPool;
             
             return zombie;
