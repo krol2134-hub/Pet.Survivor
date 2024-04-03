@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBarUI : MonoBehaviour
     {
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
         [SerializeField] private Slider slider;

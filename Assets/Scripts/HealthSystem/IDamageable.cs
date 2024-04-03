@@ -1,4 +1,4 @@
-﻿namespace Enemies
+﻿namespace HealthSystem
 {
     public interface IDamageable
     {

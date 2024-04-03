@@ -34,6 +34,7 @@ namespace Core
         private void PlayerDead()
         {
             loseCanvas.gameObject.SetActive(true);
+            
             Time.timeScale = 0f;
         }
         

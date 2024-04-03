@@ -1,5 +1,5 @@
 ﻿using System;
-using Enemies;
+using AI;
 using SpellSystem;
 using UI;
 using UnityEngine;

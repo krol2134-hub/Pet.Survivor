@@ -1,8 +1,9 @@
 using System;
+using AI.Enemies;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Enemies
+namespace AI
 {   
     public class AIDirector : MonoBehaviour
     {

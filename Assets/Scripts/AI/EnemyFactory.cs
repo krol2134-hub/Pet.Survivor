@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using AI.Enemies;
+using UnityEngine;
 
-namespace Enemies
+namespace AI
 {
     public class EnemyFactory : MonoBehaviour
     {

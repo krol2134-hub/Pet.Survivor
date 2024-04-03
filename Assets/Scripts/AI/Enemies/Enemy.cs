@@ -1,8 +1,9 @@
 ﻿using System;
+using HealthSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Enemies
+namespace AI.Enemies
 {
     public class Enemy : MonoBehaviour, IDamageable
     {

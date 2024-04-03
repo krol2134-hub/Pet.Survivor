@@ -1,4 +1,4 @@
-﻿namespace Enemies
+﻿namespace AI.Enemies
 {
     public enum EnemyType
     {

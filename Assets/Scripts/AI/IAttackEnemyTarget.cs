@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemies
+namespace AI
 {
     public interface IAttackEnemyTarget
     {
