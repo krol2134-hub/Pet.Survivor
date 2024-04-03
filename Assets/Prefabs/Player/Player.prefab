@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca200cc853e402799b3fcdbc5d1c349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 5f669cbff1aa319468a6af417cd6375b, type: 2}
   maxHealth: 100
   armor: 0.2
 --- !u!143 &3371758092238978113

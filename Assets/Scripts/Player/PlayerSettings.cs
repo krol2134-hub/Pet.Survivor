@@ -1,10 +1,11 @@
-﻿using SpellSystem;
+﻿using HealthSystem;
+using SpellSystem;
 using UnityEngine;
 
 namespace Player
 {
     [CreateAssetMenu(menuName = "Nekki.TestTask/Player Settings", fileName = "New Player Settings")]
-    public class PlayerSettings : ScriptableObject
+    public class PlayerSettings : HealthSettings
     {
         [SerializeField] private SpellBase[] spells;
         [SerializeField] private float speed = 3f;

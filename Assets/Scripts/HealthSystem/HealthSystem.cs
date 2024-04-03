@@ -5,8 +5,7 @@ namespace HealthSystem
 {
     public class HealthSystem : MonoBehaviour
     {
-        [SerializeField] private float maxHealth = 100f;
-        [SerializeField, Range(0f, 1f)] private float armor = 0.5f;
+        [SerializeField] private HealthSettings settings;
 
         private float _health;
         private bool _isDead;
@@ -20,7 +19,7 @@ namespace HealthSystem
             set
             {
                 var previousHealth = _health;
-                _health = Mathf.Clamp(value, 0f, maxHealth);
+                _health = Mathf.Clamp(value, 0f, settings.MaxHealth);
 
                 var isChanged = !Mathf.Approximately(_health, previousHealth);
                 if (isChanged)
@@ -28,16 +27,16 @@ namespace HealthSystem
             }
         }
 
-        public float MaxHealth => maxHealth;
+        public float MaxHealth => settings.MaxHealth;
 
-        private void Awake() => Health = maxHealth;
+        private void Awake() => Health = settings.MaxHealth;
 
         public void ApplyDamage(float damage)
         {
             if (_isDead)
                 return;
 
-            var finalDamage = damage - (damage * armor);
+            var finalDamage = damage - (damage * settings.Armor);
             Health -= finalDamage;
 
             if (Health <= 0)

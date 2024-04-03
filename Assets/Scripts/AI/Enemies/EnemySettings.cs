@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using HealthSystem;
+using UnityEngine;
 
 namespace AI.Enemies
 {
     [CreateAssetMenu(menuName = "Nekki.TestTask/Enemy Settings", fileName = "New Enemy Settings")]
-    public class EnemySettings : ScriptableObject
+    public class EnemySettings : HealthSettings
     {
         [SerializeField] private EnemyType type;
         [SerializeField] private float damage = 10f;

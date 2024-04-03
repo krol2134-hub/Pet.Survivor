@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4f7131305d44ca8fcb7c7303c8ea24, type: 3}
   m_Name: Capsule Enemy Settings
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  armor: 0
   type: 0
   damage: 10
   radiusForDamageTarget: 1.2
