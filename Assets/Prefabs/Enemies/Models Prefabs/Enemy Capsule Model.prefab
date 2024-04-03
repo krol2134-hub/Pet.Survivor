@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4275005669953213535}
   - component: {fileID: 6173616460533623108}
   m_Layer: 0
-  m_Name: Enemy Capsule Model Prefab
+  m_Name: Enemy Capsule Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
