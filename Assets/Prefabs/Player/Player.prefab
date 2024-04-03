@@ -68,8 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 5f669cbff1aa319468a6af417cd6375b, type: 2}
-  maxHealth: 100
-  armor: 0.2
 --- !u!143 &3371758092238978113
 CharacterController:
   m_ObjectHideFlags: 0
@@ -318,6 +316,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5255442810448324250, guid: 73547b910893cfe439eb2151491c4090, type: 3}
+    - {fileID: 3480433185871363086, guid: 73547b910893cfe439eb2151491c4090, type: 3}
+    - {fileID: 7954268030414818098, guid: 73547b910893cfe439eb2151491c4090, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

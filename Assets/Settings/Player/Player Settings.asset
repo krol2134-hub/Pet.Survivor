@@ -17,4 +17,5 @@ MonoBehaviour:
   spells:
   - {fileID: 11400000, guid: f31e3d2cf41100341aa30b7b20d359b5, type: 2}
   - {fileID: 11400000, guid: aede0d80360a81e4989448e27657ffd3, type: 2}
+  - {fileID: 11400000, guid: b4ba33c9b7dea9942a59a038c3aa3d0e, type: 2}
   speed: 3.5
