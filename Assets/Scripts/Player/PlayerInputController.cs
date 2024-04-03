@@ -40,14 +40,16 @@ namespace Player
             _inputControls.Gameplay.SpellNext.performed -= SpellNextHandler;
         }
 
-        private void SpellUseHandler(InputAction.CallbackContext context) => SpellCastPressed?.Invoke();
-        private void SpellPreviousHandler(InputAction.CallbackContext context) => SpellPreviousPressed?.Invoke();
-        private void SpellNextHandler(InputAction.CallbackContext context) => SpellNextPressed?.Invoke();
-
         private void MovementHandler(InputAction.CallbackContext context)
         {
             var movementValue = context.ReadValue<Vector2>();
             Movement = movementValue;
         }
+
+        private void SpellUseHandler(InputAction.CallbackContext context) => SpellCastPressed?.Invoke();
+
+        private void SpellPreviousHandler(InputAction.CallbackContext context) => SpellPreviousPressed?.Invoke();
+
+        private void SpellNextHandler(InputAction.CallbackContext context) => SpellNextPressed?.Invoke();
     }
 }

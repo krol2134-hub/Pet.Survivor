@@ -24,9 +24,15 @@ namespace Player
             var movement = new Vector3(inputMovement.x, 0, inputMovement.y);
             var motion = movement * (_speed * Time.deltaTime);
             
-            _characterController.transform.rotation = movement == Vector3.zero ?
-                _characterController.transform.rotation : Quaternion.LookRotation(movement);;
+            RotateByMotion(movement);
             _characterController.Move(motion);
+        }
+
+        private void RotateByMotion(Vector3 movement)
+        {
+            var isStop = movement == Vector3.zero;
+            _characterController.transform.rotation = isStop ? 
+                _characterController.transform.rotation : Quaternion.LookRotation(movement);
         }
     }
 }

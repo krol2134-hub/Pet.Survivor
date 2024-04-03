@@ -33,16 +33,18 @@ namespace Player
 
         private void OnEnable()
         {
-            healthSystem.Dead += HealthSystemDeadHandler;
             _playerInputController.Enable();
             _spellController.Enable();
+            
+            healthSystem.Dead += HealthSystemDeadHandler;
         }
 
         private void OnDisable()
         {
-            healthSystem.Dead -= HealthSystemDeadHandler;
             _playerInputController.Disable();
             _spellController.Disable();
+            
+            healthSystem.Dead -= HealthSystemDeadHandler;
         }
 
         private void Update() => _playerMovement.Tick();
