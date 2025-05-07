@@ -1,3 +1,4 @@
+using System;
 using AI;
 using Players;
 using UnityEngine;
@@ -12,12 +13,22 @@ namespace Core
         [SerializeField] private EnemyPool enemyPool;
         [SerializeField] private LoseController loseController;
 
+        private PauseController _pauseController;
+        
+        
         private void Awake()
         {
             enemyFactory.Initialize(player);
             enemyPool.Initialize(enemyFactory);
             aiDirector.Initialize(enemyPool);
             loseController.Initialize(player);
+
+            _pauseController = new PauseController(player);
+        }
+
+        private void OnDestroy()
+        {
+            _pauseController.Dispose();
         }
     }
 }

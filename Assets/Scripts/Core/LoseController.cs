@@ -28,15 +28,11 @@ namespace Core
         private void OnDestroy()
         {
             _player.Dead -= PlayerDead;
-
-            Time.timeScale = 1f;
         }
 
         private void PlayerDead()
         {
             loseCanvas.gameObject.SetActive(true);
-
-            Time.timeScale = 0f;
         }
 
         private void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
