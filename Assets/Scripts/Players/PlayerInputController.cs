@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Players
 {
     public class PlayerInputController
     {
@@ -11,9 +11,9 @@ namespace Player
         public event Action SpellCastPressed;
         public event Action SpellPreviousPressed;
         public event Action SpellNextPressed;
-        
+
         public Vector2 Movement { get; private set; }
-        
+
         public PlayerInputController()
         {
             _inputControls = new InputControls();
@@ -24,7 +24,7 @@ namespace Player
         {
             _inputControls.Gameplay.Movement.performed += MovementHandler;
             _inputControls.Gameplay.Movement.canceled += MovementHandler;
-            
+
             _inputControls.Gameplay.SpellCast.performed += SpellUseHandler;
             _inputControls.Gameplay.SpellPrevious.performed += SpellPreviousHandler;
             _inputControls.Gameplay.SpellNext.performed += SpellNextHandler;
@@ -34,7 +34,7 @@ namespace Player
         {
             _inputControls.Gameplay.Movement.performed -= MovementHandler;
             _inputControls.Gameplay.Movement.canceled -= MovementHandler;
-            
+
             _inputControls.Gameplay.SpellCast.performed -= SpellUseHandler;
             _inputControls.Gameplay.SpellPrevious.performed -= SpellPreviousHandler;
             _inputControls.Gameplay.SpellNext.performed -= SpellNextHandler;

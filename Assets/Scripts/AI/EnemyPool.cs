@@ -10,25 +10,26 @@ namespace AI
     public class EnemyPool : MonoBehaviour
     {
         [SerializeField] private int size = 10;
-        
+
         private readonly Dictionary<EnemyType, ObjectPool<Enemy>> _pools = new();
 
         private EnemyFactory _factory;
-        
+
         public void Initialize(EnemyFactory factory)
         {
             _factory = factory;
-            
-            foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType))) 
+
+            foreach (EnemyType enemyType in Enum.GetValues(typeof(EnemyType)))
                 RegisterPool(enemyType);
         }
-        
+
         private void RegisterPool(EnemyType type)
         {
-            var newPool = new ObjectPool<Enemy>(CreateFunc, ActionOnGet, ActionOnRelease, ActionOnDestroy, false, defaultCapacity: size);
+            var newPool = new ObjectPool<Enemy>(CreateFunc, ActionOnGet, ActionOnRelease, ActionOnDestroy, false,
+                defaultCapacity: size);
             newPool.Prewarm(size);
             _pools.Add(type, newPool);
-            
+
             return;
 
             Enemy CreateFunc() => _factory.CreateEnemy(type, Vector3.zero, Quaternion.identity);
@@ -51,15 +52,14 @@ namespace AI
 
             zombie.transform.position = position;
             zombie.Dead += ReturnToPool;
-            
+
             return zombie;
-            
+
             void ReturnToPool(Enemy enemy)
             {
                 pool.Release(enemy);
                 enemy.Dead -= ReturnToPool;
             }
         }
-
     }
 }

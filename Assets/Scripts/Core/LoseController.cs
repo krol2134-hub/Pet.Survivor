@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Players;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,15 +10,15 @@ namespace Core
     {
         [SerializeField] private Canvas loseCanvas;
         [SerializeField] private Button restartButton;
-        
-        private Player.Player _player;
+
+        private Player _player;
 
         private void Awake() => loseCanvas.gameObject.SetActive(false);
 
-        public void Initialize(Player.Player player)
+        public void Initialize(Player player)
         {
             _player = player;
-            
+
             _player.Dead += PlayerDead;
         }
 
@@ -27,17 +28,17 @@ namespace Core
         private void OnDestroy()
         {
             _player.Dead -= PlayerDead;
-            
+
             Time.timeScale = 1f;
         }
 
         private void PlayerDead()
         {
             loseCanvas.gameObject.SetActive(true);
-            
+
             Time.timeScale = 0f;
         }
-        
+
         private void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

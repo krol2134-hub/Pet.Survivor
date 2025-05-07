@@ -6,7 +6,7 @@ namespace SpellSystem
     public class ProjectileSpell : SpellBase
     {
         [SerializeField] private Projectile projectilePrefab;
-        
+
         public override void Cast(Transform castTransform)
         {
             var projectile = Instantiate(projectilePrefab, castTransform.position, castTransform.rotation);

@@ -12,7 +12,7 @@ namespace SpellSystem
         public float Cooldown => cooldown;
         public string Name => displayName;
         public Sprite Icon => icon;
-        
+
         public abstract void Cast(Transform castTransform);
     }
 }

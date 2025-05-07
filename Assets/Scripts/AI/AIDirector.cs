@@ -64,7 +64,7 @@ namespace AI
         private Vector3 GetRandomPoint()
         {
             var point = Vector3.zero;
-            
+
             var randomAxisPosition = Random.value;
             var randomOutsideOffset = Random.Range(-SpawnFieldOutsideOffset, SpawnFieldOutsideOffset);
             if (randomOutsideOffset >= 0)

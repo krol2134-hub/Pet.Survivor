@@ -6,7 +6,7 @@ namespace SpellSystem
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
-        
+
         private float _damage;
 
         public void Initialize(float damage) => _damage = damage;
@@ -23,7 +23,7 @@ namespace SpellSystem
         {
             if (other.TryGetComponent<IDamageable>(out var damageable))
                 damageable.ApplyDamage(_damage);
-            
+
             Destroy(gameObject);
         }
     }

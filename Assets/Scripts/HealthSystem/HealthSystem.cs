@@ -12,7 +12,7 @@ namespace HealthSystem
 
         public event Action Dead;
         public event Action<float> HealthChanged;
-        
+
         private float Health
         {
             get => _health;

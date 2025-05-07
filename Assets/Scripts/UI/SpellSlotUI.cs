@@ -10,7 +10,7 @@ namespace UI
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private TextMeshProUGUI iconNameText;
-        
+
         private SpellController _spellController;
 
         public void UpdateSlotInfo(Sprite iconSprite, string iconName)

@@ -4,7 +4,7 @@ using SpellSystem;
 using UI;
 using UnityEngine;
 
-namespace Player
+namespace Players
 {
     [SelectionBase]
     public class Player : MonoBehaviour, IAttackEnemyTarget
@@ -18,7 +18,7 @@ namespace Player
         private PlayerMovement _playerMovement;
 
         private SpellController _spellController;
-        
+
         public event Action Dead;
 
         public Vector3 Position => transform.position;
@@ -35,7 +35,7 @@ namespace Player
         {
             _playerInputController.Enable();
             _spellController.Enable();
-            
+
             healthSystem.Dead += HealthSystemDeadHandler;
         }
 
@@ -43,12 +43,12 @@ namespace Player
         {
             _playerInputController.Disable();
             _spellController.Disable();
-            
+
             healthSystem.Dead -= HealthSystemDeadHandler;
         }
 
         private void Update() => _playerMovement.Tick();
-        
+
         private void HealthSystemDeadHandler() => Dead?.Invoke();
 
         public void ApplyDamage(float damage) => healthSystem.ApplyDamage(damage);

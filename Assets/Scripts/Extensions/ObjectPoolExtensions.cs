@@ -7,10 +7,10 @@ namespace Extensions
         public static void Prewarm<T>(this ObjectPool<T> pool, int prewarmCount) where T : class
         {
             var poolObjects = new T[prewarmCount];
-            for (var i = 0; i < prewarmCount; i++) 
+            for (var i = 0; i < prewarmCount; i++)
                 poolObjects[i] = pool.Get();
 
-            foreach (var poolObject in poolObjects) 
+            foreach (var poolObject in poolObjects)
                 pool.Release(poolObject);
         }
     }

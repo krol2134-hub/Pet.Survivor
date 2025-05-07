@@ -10,9 +10,9 @@ namespace AI.Enemies
         [SerializeField] private EnemySettings settings;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
-        
+
         private IAttackEnemyTarget _target;
-        
+
         public EnemyType Type => settings.Type;
 
         public event Action<Enemy> Dead;
@@ -31,19 +31,19 @@ namespace AI.Enemies
         {
             if (_target == null)
                 return;
-            
+
             MoveToTarget();
             TryApplyDamageToTargetByDistance();
         }
-        
+
         public void ResetData() => healthSystem.ResetData();
 
         public void ApplyDamage(float applyDamage) => healthSystem.ApplyDamage(applyDamage);
-        
+
         private void HealthSystemDeadHandler() => Die();
 
         private void MoveToTarget() => agent.SetDestination(_target.Position);
-        
+
         private void Die() => Dead?.Invoke(this);
 
         private void TryApplyDamageToTargetByDistance()
@@ -52,7 +52,7 @@ namespace AI.Enemies
             var currentPosition = transform.position;
             targetPosition.y = 0;
             currentPosition.y = 0;
-            
+
             var distanceToTarget = Vector3.Distance(targetPosition, currentPosition);
             var enoughDistanceForAttack = distanceToTarget <= settings.RadiusForDamageTarget;
             if (enoughDistanceForAttack)

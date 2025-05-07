@@ -2,7 +2,7 @@
 using SpellSystem;
 using UnityEngine;
 
-namespace Player
+namespace Players
 {
     [CreateAssetMenu(menuName = "Nekki.TestTask/Player Settings", fileName = "New Player Settings")]
     public class PlayerSettings : HealthSettings

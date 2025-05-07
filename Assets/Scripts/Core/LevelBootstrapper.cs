@@ -1,11 +1,12 @@
 using AI;
+using Players;
 using UnityEngine;
 
 namespace Core
 {
     public class LevelBootstrapper : MonoBehaviour
     {
-        [SerializeField] private Player.Player player;
+        [SerializeField] private Player player;
         [SerializeField] private AIDirector aiDirector;
         [SerializeField] private EnemyFactory enemyFactory;
         [SerializeField] private EnemyPool enemyPool;
