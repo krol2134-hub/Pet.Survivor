@@ -1,6 +1,7 @@
 using System;
 using AI;
 using Core.Lose;
+using Core.UpdateServices;
 using Players;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Core
     {
         [SerializeField] private Player player;
         [SerializeField] private LoseView loseView;
+        [SerializeField] private TimerView timerView;
         
         [Space(10)] [Header("Settings")]
         [SerializeField] private EnemySettings enemySettings;
@@ -25,9 +27,7 @@ namespace Core
         private void Awake()
         {
             InstallAi();
-
-            _pauseController = new PauseController(player);
-            _loseController = new LoseController(player, loseView);
+            InstallGameplay();
         }
 
         private void OnDestroy()
@@ -41,6 +41,18 @@ namespace Core
             _enemyFactory = new EnemyFactory(player, enemySettings);
             _enemyPool = new EnemyPool(_enemyFactory, enemySettings);
             _aiDirector = new AIDirector(_enemyPool, enemySettings);
+        }
+
+        private void InstallGameplay()
+        {
+            _pauseController = new PauseController(player);
+            _loseController = new LoseController(player, loseView);
+        }
+        
+        private void InstallUpdateService()
+        {
+            var updateServiceGameObject = new GameObject(nameof(UpdateService));
+            var updateService = updateServiceGameObject.AddComponent<UpdateService>();
         }
     }
 }

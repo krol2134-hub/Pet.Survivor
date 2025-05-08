@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4842313502255006213}
-  - component: {fileID: 504027739139875730}
+  - component: {fileID: 8427648984962434039}
   m_Layer: 0
   m_Name: Lose Controller
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 1819669717985134714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &504027739139875730
+--- !u!114 &8427648984962434039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4997149119644736680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86aa66c22d984c3ebe0e1f2db9cf0ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 43ccec7347f545c09369cce625093c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loseCanvas: {fileID: 7323600373933338623}

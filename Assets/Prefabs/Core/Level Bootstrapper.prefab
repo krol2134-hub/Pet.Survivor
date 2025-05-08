@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  loseView: {fileID: 7577229121100102319}
+  loseView: {fileID: 1085273422008108606}
   enemySettings: {fileID: 11400000, guid: 47fb950c9fd8bd346bb9404027e4b3a2, type: 2}
 --- !u!1001 &8933642428459075017
 PrefabInstance:
@@ -100,52 +100,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseView
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 504027739139875730, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4997149119644736680, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7577229121100102319}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
---- !u!223 &2186510573374515766 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 7323600373933338623, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
-  m_PrefabInstance: {fileID: 8933642428459075017}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4092072273384933324 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4842313502255006213, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
-  m_PrefabInstance: {fileID: 8933642428459075017}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4513694042780719457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4997149119644736680, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
-  m_PrefabInstance: {fileID: 8933642428459075017}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7577229121100102319
+--- !u!114 &1085273422008108606 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4513694042780719457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ccec7347f545c09369cce625093c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loseCanvas: {fileID: 2186510573374515766}
-  restartButton: {fileID: 4858840729779209219}
---- !u!114 &4858840729779209219 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4077091998716772810, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8427648984962434039, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
   m_PrefabInstance: {fileID: 8933642428459075017}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 43ccec7347f545c09369cce625093c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4092072273384933324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4842313502255006213, guid: cc79bdda0e508f347b20ae763a0055b4, type: 3}
+  m_PrefabInstance: {fileID: 8933642428459075017}
+  m_PrefabAsset: {fileID: 0}
