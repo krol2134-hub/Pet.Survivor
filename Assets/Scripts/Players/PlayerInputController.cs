@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Players
 {
-    public class PlayerInputController
+    public class PlayerInput
     {
         private readonly InputControls _inputControls;
 
@@ -14,7 +14,7 @@ namespace Players
 
         public Vector2 Movement { get; private set; }
 
-        public PlayerInputController()
+        public PlayerInput()
         {
             _inputControls = new InputControls();
             _inputControls.Enable();

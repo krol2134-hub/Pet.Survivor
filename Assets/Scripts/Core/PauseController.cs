@@ -17,8 +17,9 @@ namespace Core
 
         public void Dispose()
         {
-            _player.Dead -= PlayerDeadHandler;
             Time.timeScale = 1f;
+            
+            _player.Dead -= PlayerDeadHandler;
         }
 
         private void PlayerDeadHandler()

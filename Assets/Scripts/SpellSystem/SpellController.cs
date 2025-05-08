@@ -8,7 +8,7 @@ namespace SpellSystem
     public class SpellController
     {
         private readonly SpellBase[] _spells;
-        private readonly PlayerInputController _inputController;
+        private readonly PlayerInput _input;
         private readonly SpellSlotUI _spellSlotUI;
 
         private readonly MonoBehaviour _castBehaviour;
@@ -27,11 +27,11 @@ namespace SpellSystem
             }
         }
 
-        public SpellController(SpellBase[] spells, PlayerInputController inputController, SpellSlotUI spellSlotUI,
+        public SpellController(SpellBase[] spells, PlayerInput input, SpellSlotUI spellSlotUI,
             MonoBehaviour castBehaviour)
         {
             _spells = spells;
-            _inputController = inputController;
+            _input = input;
             _spellSlotUI = spellSlotUI;
 
             _castBehaviour = castBehaviour;
@@ -39,16 +39,16 @@ namespace SpellSystem
 
         public void Enable()
         {
-            _inputController.SpellCastPressed += Cast;
-            _inputController.SpellPreviousPressed += SelectPreviousSpell;
-            _inputController.SpellNextPressed += SelectNextSpell;
+            _input.SpellCastPressed += Cast;
+            _input.SpellPreviousPressed += SelectPreviousSpell;
+            _input.SpellNextPressed += SelectNextSpell;
         }
 
         public void Disable()
         {
-            _inputController.SpellCastPressed -= Cast;
-            _inputController.SpellPreviousPressed -= SelectPreviousSpell;
-            _inputController.SpellNextPressed -= SelectNextSpell;
+            _input.SpellCastPressed -= Cast;
+            _input.SpellPreviousPressed -= SelectPreviousSpell;
+            _input.SpellNextPressed -= SelectNextSpell;
         }
 
         private void Cast()

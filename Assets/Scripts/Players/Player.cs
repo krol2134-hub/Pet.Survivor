@@ -14,7 +14,7 @@ namespace Players
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
         [SerializeField] private SpellSlotUI spellSlotUI;
 
-        private PlayerInputController _playerInputController;
+        private PlayerInput _playerInput;
         private PlayerMovement _playerMovement;
 
         private SpellController _spellController;
@@ -25,15 +25,15 @@ namespace Players
 
         private void Awake()
         {
-            _playerInputController = new PlayerInputController();
-            _playerMovement = new PlayerMovement(characterController, _playerInputController, settings.Speed);
+            _playerInput = new PlayerInput();
+            _playerMovement = new PlayerMovement(characterController, _playerInput, settings.Speed);
 
-            _spellController = new SpellController(settings.Spells, _playerInputController, spellSlotUI, this);
+            _spellController = new SpellController(settings.Spells, _playerInput, spellSlotUI, this);
         }
 
         private void OnEnable()
         {
-            _playerInputController.Enable();
+            _playerInput.Enable();
             _spellController.Enable();
 
             healthSystem.Dead += HealthSystemDeadHandler;
@@ -41,7 +41,7 @@ namespace Players
 
         private void OnDisable()
         {
-            _playerInputController.Disable();
+            _playerInput.Disable();
             _spellController.Disable();
 
             healthSystem.Dead -= HealthSystemDeadHandler;

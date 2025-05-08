@@ -5,15 +5,15 @@ namespace Players
     public class PlayerMovement
     {
         private readonly CharacterController _characterController;
-        private readonly PlayerInputController _inputController;
+        private readonly PlayerInput _input;
 
         private readonly float _speed;
 
-        public PlayerMovement(CharacterController characterController, PlayerInputController inputController,
+        public PlayerMovement(CharacterController characterController, PlayerInput input,
             float speed)
         {
             _characterController = characterController;
-            _inputController = inputController;
+            _input = input;
             _speed = speed;
         }
 
@@ -21,7 +21,7 @@ namespace Players
 
         private void Move()
         {
-            var inputMovement = _inputController.Movement;
+            var inputMovement = _input.Movement;
             var movement = new Vector3(inputMovement.x, 0, inputMovement.y);
             var motion = movement * (_speed * Time.deltaTime);
 
