@@ -2,7 +2,7 @@
 
 namespace SpellSystem
 {
-    [CreateAssetMenu(menuName = "Nekki.TestTask/SpellSystem/Projectile Spell", fileName = "New Projectile Spell")]
+    [CreateAssetMenu(menuName = "Pet.Survivor/SpellSystem/Projectile Spell", fileName = "ProjectileSpell")]
     public class ProjectileSpell : SpellBase
     {
         [SerializeField] private Projectile projectilePrefab;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SpellSystem
 {
-    [CreateAssetMenu(menuName = "Nekki.TestTask/SpellSystem/Aoe Spell", fileName = "New Aoe Spell")]
+    [CreateAssetMenu(menuName = "Pet.Survivor/SpellSystem/Aoe Spell", fileName = "AoeSpell")]
     public class AoeSpell : SpellBase
     {
         [SerializeField] private float radius = 5f;

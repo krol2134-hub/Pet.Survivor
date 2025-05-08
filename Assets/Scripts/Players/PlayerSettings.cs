@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Players
 {
-    [CreateAssetMenu(menuName = "Nekki.TestTask/Player Settings", fileName = "New Player Settings")]
+    [CreateAssetMenu(menuName = "Pet.Survivor/Player Settings", fileName = "PlayerSettings")]
     public class PlayerSettings : HealthSettings
     {
         [SerializeField] private SpellBase[] spells;

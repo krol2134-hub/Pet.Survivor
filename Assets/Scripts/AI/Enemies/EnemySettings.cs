@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AI.Enemies
 {
-    [CreateAssetMenu(menuName = "Nekki.TestTask/Enemy Settings", fileName = "New Enemy Settings")]
+    [CreateAssetMenu(menuName = "Pet.Survivor/Enemy Settings", fileName = "EnemySettings")]
     public class EnemySettings : HealthSettings
     {
         [SerializeField] private EnemyType type;
