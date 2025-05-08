@@ -5,21 +5,21 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class AIDirector : MonoBehaviour
+    public class AIDirector
     {
-        [SerializeField] private int maxEnemyCount = 10;
-
         private const float SpawnFieldOutsideOffset = 0.2f;
 
+        private readonly EnemyPool _enemyPool;
+        private readonly EnemySettings _enemySettings;
+        
         private int _currentZombiesCount;
 
-        private EnemyPool _enemyPool;
-
-        public void Initialize(EnemyPool enemyPool)
+        public AIDirector(EnemyPool enemyPool, EnemySettings enemySettings)
         {
             _enemyPool = enemyPool;
+            _enemySettings = enemySettings;
 
-            SpawnEnemies(maxEnemyCount);
+            SpawnEnemies(_enemySettings.MaxEnemyAlive);
         }
 
         private void SpawnEnemies(int spawnCount)
@@ -47,7 +47,7 @@ namespace AI
 
         private void TrySpawnZombies()
         {
-            var needToSpawnCount = maxEnemyCount - _currentZombiesCount;
+            var needToSpawnCount = _enemySettings.MaxEnemyAlive - _currentZombiesCount;
             if (needToSpawnCount > 0)
                 SpawnEnemies(needToSpawnCount);
         }

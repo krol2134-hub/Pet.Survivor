@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core
+namespace Core.Lose
 {
     public class LoseView : MonoBehaviour
     {

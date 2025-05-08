@@ -1,7 +1,7 @@
 ﻿using System;
 using Players;
 
-namespace Core
+namespace Core.Lose
 {
     //TODO Now is GOD class, need to rework with separated logic
     public class LoseController : IDisposable

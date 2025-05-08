@@ -2,7 +2,7 @@
 
 namespace HealthSystem
 {
-    [CreateAssetMenu(menuName = "Nekki.TestTask/Health Settings", fileName = "Health Settings")]
+    [CreateAssetMenu(menuName = "Pet.Survivor/Health Settings", fileName = "Health Settings")]
     public class HealthSettings : ScriptableObject
     {
         [SerializeField] private float maxHealth = 100f;

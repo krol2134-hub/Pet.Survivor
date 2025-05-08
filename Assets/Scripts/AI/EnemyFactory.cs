@@ -3,23 +3,26 @@ using UnityEngine;
 
 namespace AI
 {
-    public class EnemyFactory : MonoBehaviour
+    public class EnemyFactory
     {
-        [SerializeField] private Enemy[] prefabs;
+        private readonly IAttackEnemyTarget _attackTarget;
+        private readonly EnemySettings _settings;
 
-        private IAttackEnemyTarget _attackTarget;
-
-        public void Initialize(IAttackEnemyTarget attackTarget) => _attackTarget = attackTarget;
-
+        public EnemyFactory(IAttackEnemyTarget attackTarget, EnemySettings settings)
+        {
+            _attackTarget = attackTarget;
+            _settings = settings;
+        }
+        
         public Enemy CreateEnemy(EnemyType type, Vector3 position, Quaternion rotation)
         {
-            foreach (var prefab in prefabs)
+            foreach (var prefab in _settings.Prefabs)
             {
                 var isTargetType = prefab.Type == type;
                 if (!isTargetType)
                     continue;
 
-                var enemy = Instantiate(prefab, position, rotation);
+                var enemy = Object.Instantiate(prefab, position, rotation);
                 enemy.Initialize(_attackTarget);
                 return enemy;
             }
