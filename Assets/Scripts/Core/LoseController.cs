@@ -1,14 +1,13 @@
 ﻿using System;
 using Players;
-using UnityEngine.SceneManagement;
 
 namespace Core
 {
     //TODO Now is GOD class, need to rework with separated logic
     public class LoseController : IDisposable
     {
-        private Player _player;
-        private LoseView _loseView;
+        private readonly Player _player;
+        private readonly LoseView _loseView;
 
         public LoseController(Player player, LoseView loseView)
         {
@@ -30,6 +29,9 @@ namespace Core
             _loseView.Open();
         }
 
-        private void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        private void RestartLevel()
+        {
+            SceneLoader.RestartLevel();
+        }
     }
 }
