@@ -1,8 +1,8 @@
-using System;
 using AI;
 using Core.Lose;
 using Core.UpdateServices;
 using Players;
+using UI;
 using UnityEngine;
 
 namespace Core
@@ -22,12 +22,14 @@ namespace Core
         
         private PauseController _pauseController;
         private LoseController _loseController;
+        private TimerController _timerController;
         
         //TODO Use DI/VContanier
         private void Awake()
         {
             InstallAi();
             InstallGameplay();
+            InstallUpdateService();
         }
 
         private void OnDestroy()
@@ -47,12 +49,15 @@ namespace Core
         {
             _pauseController = new PauseController(player);
             _loseController = new LoseController(player, loseView);
+            _timerController = new TimerController(timerView);
         }
         
         private void InstallUpdateService()
         {
             var updateServiceGameObject = new GameObject(nameof(UpdateService));
             var updateService = updateServiceGameObject.AddComponent<UpdateService>();
+            
+            updateService.RegisterUpdateable(_timerController);
         }
     }
 }
