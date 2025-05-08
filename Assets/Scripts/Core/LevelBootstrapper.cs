@@ -11,24 +11,26 @@ namespace Core
         [SerializeField] private AIDirector aiDirector;
         [SerializeField] private EnemyFactory enemyFactory;
         [SerializeField] private EnemyPool enemyPool;
-        [SerializeField] private LoseController loseController;
+        [SerializeField] private LoseView loseView;
 
         private PauseController _pauseController;
+        private LoseController _loseController;
         
-        
+        //TODO Use DI/VContanier
         private void Awake()
         {
             enemyFactory.Initialize(player);
             enemyPool.Initialize(enemyFactory);
             aiDirector.Initialize(enemyPool);
-            loseController.Initialize(player);
 
             _pauseController = new PauseController(player);
+            _loseController = new LoseController(player, loseView);
         }
 
         private void OnDestroy()
         {
             _pauseController.Dispose();
+            _loseController.Dispose();
         }
     }
 }

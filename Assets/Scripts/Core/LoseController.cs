@@ -1,38 +1,33 @@
-﻿using Players;
-using UnityEngine;
+﻿using System;
+using Players;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Core
 {
     //TODO Now is GOD class, need to rework with separated logic
-    public class LoseController : MonoBehaviour
+    public class LoseController : IDisposable
     {
-        [SerializeField] private Canvas loseCanvas;
-        [SerializeField] private Button restartButton;
-
         private Player _player;
+        private LoseView _loseView;
 
-        private void Awake() => loseCanvas.gameObject.SetActive(false);
-
-        public void Initialize(Player player)
+        public LoseController(Player player, LoseView loseView)
         {
             _player = player;
+            _loseView = loseView;
 
             _player.Dead += PlayerDead;
+            _loseView.RestartClicked.AddListener(RestartLevel);
         }
 
-        private void OnEnable() => restartButton.onClick.AddListener(RestartLevel);
-        private void OnDisable() => restartButton.onClick.RemoveListener(RestartLevel);
-
-        private void OnDestroy()
+        public void Dispose()
         {
             _player.Dead -= PlayerDead;
+            _loseView.RestartClicked.RemoveListener(RestartLevel);
         }
 
         private void PlayerDead()
         {
-            loseCanvas.gameObject.SetActive(true);
+            _loseView.Open();
         }
 
         private void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
