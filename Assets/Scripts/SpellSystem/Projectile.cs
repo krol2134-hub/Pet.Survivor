@@ -21,9 +21,10 @@ namespace SpellSystem
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<IDamageable>(out var damageable))
-                damageable.ApplyDamage(_damage);
-
+            if (!other.TryGetComponent<IDamageable>(out var damageable))
+                return;
+            
+            damageable.ApplyDamage(_damage);
             Destroy(gameObject);
         }
     }
