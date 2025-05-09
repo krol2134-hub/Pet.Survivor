@@ -10,6 +10,8 @@ namespace UI
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private TextMeshProUGUI iconNameText;
+        [SerializeField] private TextMeshProUGUI previousButtonNameText;
+        [SerializeField] private TextMeshProUGUI previousButtonText;
 
         private SpellController _spellController;
 

@@ -1,4 +1,5 @@
-using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Helpers
@@ -7,12 +8,18 @@ namespace Helpers
     {
         [SerializeField] private float delay;
 
-        private void Start() => StartCoroutine(DestroyWithDelay());
-
-        private IEnumerator DestroyWithDelay()
+        private void Start()
         {
-            yield return new WaitForSeconds(delay);
+            DestroyWithDelay(this.GetCancellationTokenOnDestroy()).Forget();
+        }
 
+        private async UniTaskVoid DestroyWithDelay(CancellationToken token)
+        {
+            await UniTask.WaitForSeconds(delay, cancellationToken:token);
+
+            if (token.IsCancellationRequested)
+                return;
+            
             Destroy(gameObject);
         }
     }

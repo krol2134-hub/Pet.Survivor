@@ -28,13 +28,12 @@ namespace Players
             _playerInput = new PlayerInput();
             _playerMovement = new PlayerMovement(characterController, _playerInput, settings.Speed);
 
-            _spellController = new SpellController(settings.Spells, _playerInput, spellSlotUI, this);
+            _spellController = new SpellController(settings.Spells, spellSlotUI, transform);
         }
 
         private void OnEnable()
         {
             _playerInput.Enable();
-            _spellController.Enable();
 
             healthSystem.Dead += HealthSystemDeadHandler;
         }
@@ -42,12 +41,15 @@ namespace Players
         private void OnDisable()
         {
             _playerInput.Disable();
-            _spellController.Disable();
 
             healthSystem.Dead -= HealthSystemDeadHandler;
         }
 
-        private void Update() => _playerMovement.Tick();
+        private void Update()
+        {
+            _playerMovement.Tick();
+            _spellController.Update();
+        }
 
         private void HealthSystemDeadHandler() => Dead?.Invoke();
 

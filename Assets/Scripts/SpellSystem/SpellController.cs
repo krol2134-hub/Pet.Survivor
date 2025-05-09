@@ -1,97 +1,49 @@
-﻿using System.Collections;
-using Players;
+﻿using System.Collections.Generic;
 using UI;
 using UnityEngine;
 
 namespace SpellSystem
 {
-    public class SpellController
+    public class SpellController 
     {
         private readonly SpellBase[] _spells;
-        private readonly PlayerInput _input;
         private readonly SpellSlotUI _spellSlotUI;
+        private readonly Transform _spellParent;
 
-        private readonly MonoBehaviour _castBehaviour;
-
-        private int _currentSpellIndex;
-
-        private bool _isCooldown;
-
-        private int CurrentSpellIndex
+        private readonly Dictionary<SpellBase, float> _castTimeBySpell = new(); 
+        
+        public SpellController(SpellBase[] spells, SpellSlotUI spellSlotUI,
+            Transform spellParent)
         {
-            get => _currentSpellIndex;
-            set
+            _spells = spells;
+            _spellSlotUI = spellSlotUI;
+            _spellParent = spellParent;
+
+            foreach (var spell in spells)
             {
-                _currentSpellIndex = value;
-                UpdateCurrentSpellSlot();
+                var defaultCastTime = Time.time + spell.Cooldown;
+                _castTimeBySpell.Add(spell, defaultCastTime);
             }
         }
 
-        public SpellController(SpellBase[] spells, PlayerInput input, SpellSlotUI spellSlotUI,
-            MonoBehaviour castBehaviour)
+        public void Update()
         {
-            _spells = spells;
-            _input = input;
-            _spellSlotUI = spellSlotUI;
-
-            _castBehaviour = castBehaviour;
+            UpdateSpells();
         }
 
-        public void Enable()
+        private void UpdateSpells()
         {
-            _input.SpellCastPressed += Cast;
-            _input.SpellPreviousPressed += SelectPreviousSpell;
-            _input.SpellNextPressed += SelectNextSpell;
-        }
+            foreach (var spell in _spells)
+            {
+                var spellTime = _castTimeBySpell[spell];
 
-        public void Disable()
-        {
-            _input.SpellCastPressed -= Cast;
-            _input.SpellPreviousPressed -= SelectPreviousSpell;
-            _input.SpellNextPressed -= SelectNextSpell;
-        }
-
-        private void Cast()
-        {
-            if (_isCooldown)
-                return;
-
-            var currentSpell = _spells[CurrentSpellIndex];
-            currentSpell.Cast(_castBehaviour.transform);
-            _castBehaviour.StartCoroutine(StartCooldown(currentSpell.Cooldown));
-        }
-
-        private IEnumerator StartCooldown(float cooldown)
-        {
-            _isCooldown = true;
-
-            yield return new WaitForSeconds(cooldown);
-
-            _isCooldown = false;
-        }
-
-        private void SelectPreviousSpell()
-        {
-            var isFirstSpell = CurrentSpellIndex == 0;
-            if (isFirstSpell)
-                return;
-
-            CurrentSpellIndex--;
-        }
-
-        private void SelectNextSpell()
-        {
-            var isLastSpell = CurrentSpellIndex == _spells.Length - 1;
-            if (isLastSpell)
-                return;
-
-            CurrentSpellIndex++;
-        }
-
-        private void UpdateCurrentSpellSlot()
-        {
-            var currentSpell = _spells[CurrentSpellIndex];
-            _spellSlotUI.UpdateSlotInfo(currentSpell.Icon, currentSpell.Name);
+                var isCanCast = Time.time >= spellTime;
+                if (isCanCast)
+                {
+                    spell.Cast(_spellParent.transform);
+                    _castTimeBySpell[spell] = Time.time + spell.Cooldown;
+                }
+            }
         }
     }
 }
