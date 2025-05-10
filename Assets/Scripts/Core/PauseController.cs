@@ -12,19 +12,24 @@ namespace Core
         {
             _player = player;
 
-            _player.Dead += PlayerDeadHandler;
+            _player.Dead += EnablePause;
         }
 
         public void Dispose()
         {
-            Time.timeScale = 1f;
+            DisablePause();
             
-            _player.Dead -= PlayerDeadHandler;
+            _player.Dead -= EnablePause;
         }
 
-        private void PlayerDeadHandler()
+        public void EnablePause()
         {
             Time.timeScale = 0f;
+        }
+        
+        public void DisablePause()
+        {
+            Time.timeScale = 1f;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class TimerView : MonoBehaviour
+    public class TimerUiView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _timerText;
         

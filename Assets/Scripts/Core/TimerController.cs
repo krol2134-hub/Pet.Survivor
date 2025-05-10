@@ -6,13 +6,13 @@ namespace Core
 {
     public class TimerController : IUpdatable
     {
-        private readonly TimerView _timerView;
+        private readonly TimerUiView _timerUiView;
 
         private float _startTime;
 
-        public TimerController(TimerView timerView)
+        public TimerController(TimerUiView timerUiView)
         {
-            _timerView = timerView;
+            _timerUiView = timerUiView;
 
             _startTime = Time.time;
         }
@@ -21,7 +21,7 @@ namespace Core
         {
             var timer = Time.time - _startTime;
             
-            _timerView.SetTime(timer);
+            _timerUiView.SetTime(timer);
         }
     }
 }

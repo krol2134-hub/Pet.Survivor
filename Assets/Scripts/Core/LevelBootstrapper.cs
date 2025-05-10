@@ -11,7 +11,8 @@ namespace Core
     {
         [SerializeField] private Player player;
         [SerializeField] private LoseView loseView;
-        [SerializeField] private TimerView timerView;
+        [SerializeField] private TimerUiView _timerUiView;
+        [SerializeField] private PauseUiView _pauseUiView;
         
         [Space(10)] [Header("Settings")]
         [SerializeField] private EnemySettings enemySettings;
@@ -23,6 +24,7 @@ namespace Core
         private PauseController _pauseController;
         private LoseController _loseController;
         private TimerController _timerController;
+        private PauseUiMediator _pauseUiMediator;
         
         //TODO Use DI/VContanier
         private void Awake()
@@ -30,12 +32,14 @@ namespace Core
             InstallAi();
             InstallGameplay();
             InstallUpdateService();
+            InstallUI();
         }
 
         private void OnDestroy()
         {
             _pauseController.Dispose();
             _loseController.Dispose();
+            _pauseUiMediator.Dispose();
         }
 
         private void InstallAi()
@@ -49,15 +53,20 @@ namespace Core
         {
             _pauseController = new PauseController(player);
             _loseController = new LoseController(player, loseView);
-            _timerController = new TimerController(timerView);
+            _timerController = new TimerController(_timerUiView);
         }
-        
+
         private void InstallUpdateService()
         {
             var updateServiceGameObject = new GameObject(nameof(UpdateService));
             var updateService = updateServiceGameObject.AddComponent<UpdateService>();
             
             updateService.RegisterUpdateable(_timerController);
+        }
+
+        private void InstallUI()
+        {
+            _pauseUiMediator = new PauseUiMediator(_pauseController, _pauseUiView);
         }
     }
 }
