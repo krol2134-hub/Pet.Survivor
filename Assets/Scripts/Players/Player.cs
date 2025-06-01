@@ -13,10 +13,7 @@ namespace Players
         [SerializeField] private CharacterController characterController;
         [SerializeField] private HealthSystem.HealthSystem healthSystem;
         [SerializeField] private SpellSlotUI spellSlotUI;
-
-        private PlayerInput _playerInput;
-        private PlayerMovement _playerMovement;
-
+        
         private SpellController _spellController;
 
         public event Action Dead;
@@ -25,29 +22,21 @@ namespace Players
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
-            _playerMovement = new PlayerMovement(characterController, _playerInput, settings.Speed);
-
             _spellController = new SpellController(settings.Spells, spellSlotUI, transform);
         }
 
         private void OnEnable()
         {
-            _playerInput.Enable();
-
             healthSystem.Dead += HealthSystemDeadHandler;
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
-
             healthSystem.Dead -= HealthSystemDeadHandler;
         }
 
         private void Update()
         {
-            _playerMovement.Tick();
             _spellController.Update();
         }
 

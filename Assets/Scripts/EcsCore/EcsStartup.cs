@@ -23,6 +23,12 @@ namespace EcsCore
             _fixedUpdateSystems.ConvertScene();
             _updateSystems.ConvertScene();
             _lateUpdateSystems.ConvertScene();
+            
+            AddUpdateSystems();
+            
+            _fixedUpdateSystems.Init();
+            _updateSystems.Init();
+            _lateUpdateSystems.Init();
         }
 
         private void OnDestroy()
@@ -37,6 +43,12 @@ namespace EcsCore
             _fixedUpdateSystems.Run();
             _updateSystems.Run();
             _lateUpdateSystems.Run();
+        }
+
+        private void AddUpdateSystems()
+        {
+            _updateSystems.Add(new PlayerInputSystem());
+            _updateSystems.Add(new MovementSystem());
         }
     }
 }
